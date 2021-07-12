@@ -1,0 +1,19 @@
+php:
+  build: ./bin/server
+  container_name: 'project_webserver'
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   - ./www:/var/www/html
+  links:
+   - db
+db:
+  image: mysql:5.7
+  container_name: 'project_database'
+  volumes:
+   - /var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=rootpassword
+   - MYSQL_DATABASE=project_database
+
